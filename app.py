@@ -4,6 +4,7 @@
 import re
 import rumps
 from timer import Timer
+from config import *
 
 
 class MultiTimerApp(rumps.App):
@@ -20,7 +21,8 @@ class MultiTimerApp(rumps.App):
     TIME_VIEW_FORMAT = '{}[ {} ] '
 
     def __init__(self):
-        super(MultiTimerApp, self).__init__(self.APP_TITLE, icon='res/time.png')
+        super(MultiTimerApp, self).__init__(self.APP_TITLE,
+                                            icon=PATH_RES_IMG_TIME)
 
         self.menu = [MultiTimerApp.MENU_ITEM_ADD_TIMER,
                      MultiTimerApp.MENU_ITEM_REMOVE_TIMER]
@@ -68,7 +70,7 @@ class MultiTimerApp(rumps.App):
         self.timers.append(Timer(title, sec, on_finish))
         self.menu.add(rumps.MenuItem(title=title,
                                      callback=self._switch_timer,
-                                     icon='res/play.png'))
+                                     icon=PATH_RES_IMG_PLAY))
 
         remove_menu = self.menu[MultiTimerApp.MENU_ITEM_REMOVE_TIMER]
         remove_menu.set_callback(lambda: None)
@@ -100,15 +102,15 @@ class MultiTimerApp(rumps.App):
 
     def _start_timer(self, timer):
         timer.start()
-        self.menu[timer.title].icon = 'res/pause.png'
+        self.menu[timer.title].icon = PATH_RES_IMG_PAUSE
 
     def _stop_timer(self, timer):
         timer.stop()
-        self.menu[timer.title].icon = 'res/play.png'
+        self.menu[timer.title].icon = PATH_RES_IMG_PLAY
 
     def _pause_timer(self, timer):
         timer.pause()
-        self.menu[timer.title].icon = 'res/play.png'
+        self.menu[timer.title].icon = PATH_RES_IMG_PLAY
 
     @staticmethod
     def hms_to_sec(hms):
