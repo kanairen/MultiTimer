@@ -3,7 +3,7 @@
 
 import os
 
-PATH = os.path.dirname(__file__)
+PATH = os.path.join(os.path.dirname(__file__), '..')
 PATH_RES = os.path.join(PATH, 'res')
 
 PATH_RES_IMG = os.path.join(PATH_RES, 'img')
