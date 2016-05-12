@@ -23,6 +23,8 @@ class MultiTimerApp(rumps.App):
     TIME_VIEW_FORMAT = '{}[ {} ] '
     TIME_FINISHED_FORMAT = 'Timer \'{}\' finished.'
 
+    INVALID_TIME_FORMAT_MESSAGE = 'Timer length should be input like \'HH:MM:SS\''
+
     def __init__(self):
         super(MultiTimerApp, self).__init__(self.APP_TITLE,
                                             icon=PATH_RES_IMG_TIME)
@@ -53,17 +55,22 @@ class MultiTimerApp(rumps.App):
         if not res_title.clicked:
             return
 
-        res_sec = rumps.Window(title=MultiTimerApp.WINDOW_TIME_MESSAGE,
-                               message='',
-                               default_text=MultiTimerApp.TIME_EXAMPLE,
-                               cancel=True,
-                               dimensions=MultiTimerApp.WINDOW_DIM).run()
+        sec = None
+        while sec is None:
+            res_sec = rumps.Window(title=MultiTimerApp.WINDOW_TIME_MESSAGE,
+                                   message='',
+                                   default_text=MultiTimerApp.TIME_EXAMPLE,
+                                   cancel=True,
+                                   dimensions=MultiTimerApp.WINDOW_DIM).run()
+            if not res_sec.clicked:
+                return
 
-        if not res_sec.clicked:
-            return
+            try:
+                sec = MultiTimerApp.hms_to_sec(res_sec.text)
+            except TypeError:
+                rumps.alert(MultiTimerApp.INVALID_TIME_FORMAT_MESSAGE)
 
         title = res_title.text
-        sec = MultiTimerApp.hms_to_sec(res_sec.text)
 
         def on_finish():
             self._update_view(None)
