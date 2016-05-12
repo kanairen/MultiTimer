@@ -10,6 +10,8 @@ from config import *
 class MultiTimerApp(rumps.App):
     APP_TITLE = ""
 
+    UPDATE_VIEW_INTERVAL = 0.1
+
     MENU_ITEM_ADD_TIMER = 'Add Timer'
     MENU_ITEM_REMOVE_TIMER = 'Remove Timer'
 
@@ -29,7 +31,7 @@ class MultiTimerApp(rumps.App):
                      MultiTimerApp.MENU_ITEM_REMOVE_TIMER]
         self.timers = []
 
-    @rumps.timer(0.1)
+    @rumps.timer(UPDATE_VIEW_INTERVAL)
     def _update_view(self, _):
         if len(self.timers) == 0:
             self.title = MultiTimerApp.APP_TITLE
