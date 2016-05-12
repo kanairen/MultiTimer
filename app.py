@@ -19,6 +19,7 @@ class MultiTimerApp(rumps.App):
 
     TIME_EXAMPLE = '00:00:00'
     TIME_VIEW_FORMAT = '{}[ {} ] '
+    TIME_FINISHED_FORMAT = 'Timer \'{}\' finished.'
 
     def __init__(self):
         super(MultiTimerApp, self).__init__(self.APP_TITLE,
@@ -64,7 +65,7 @@ class MultiTimerApp(rumps.App):
 
         def on_finish():
             self._update_view(None)
-            rumps.alert('Timer \'{}\' finished.'.format(title))
+            rumps.alert(MultiTimerApp.TIME_FINISHED_FORMAT.format(title))
             self._stop_timer(self._get_timer(title))
 
         self.timers.append(Timer(title, sec, on_finish))
