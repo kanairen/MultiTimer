@@ -61,6 +61,7 @@ class MultiTimerApp(rumps.App):
         sec = MultiTimerApp.hms_to_sec(res_sec.text)
 
         def on_finish():
+            self._update_view(None)
             rumps.alert('Timer \'{}\' finished.'.format(title))
             self._stop_timer(self._get_timer(title))
 
