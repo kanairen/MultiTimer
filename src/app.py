@@ -10,7 +10,7 @@ from config import *
 class MultiTimerApp(rumps.App):
     def __init__(self):
         super(MultiTimerApp, self).__init__(APP_TITLE,
-                                            icon=PATH_RES_IMG_TIME)
+                                            icon=PATH_RES_IMG_MY_TIME_ALPHA)
 
         self.menu = [MENU_ITEM_ADD_TIMER, MENU_ITEM_REMOVE_TIMER]
         self.timers = []
@@ -29,21 +29,25 @@ class MultiTimerApp(rumps.App):
 
     @rumps.clicked(MENU_ITEM_ADD_TIMER)
     def _add_timer(self, _):
-        res_title = rumps.Window(title=WINDOW_TITLE_MESSAGE,
-                                 message='',
-                                 default_text='',
-                                 cancel=True,
-                                 dimensions=WINDOW_DIM).run()
+        window_title = rumps.Window(title=WINDOW_TITLE_MESSAGE,
+                                    message='',
+                                    default_text='',
+                                    cancel=True,
+                                    dimensions=WINDOW_DIM)
+        window_title.icon = PATH_RES_IMG_MY_TIME
+        res_title = window_title.run()
         if not res_title.clicked:
             return
 
         sec = None
         while sec is None:
-            res_sec = rumps.Window(title=WINDOW_TIME_MESSAGE,
-                                   message='',
-                                   default_text=TIME_EXAMPLE,
-                                   cancel=True,
-                                   dimensions=WINDOW_DIM).run()
+            window_sec = rumps.Window(title=WINDOW_TIME_MESSAGE,
+                                      message='',
+                                      default_text=TIME_EXAMPLE,
+                                      cancel=True,
+                                      dimensions=WINDOW_DIM)
+            window_sec.icon = PATH_RES_IMG_MY_TIME
+            res_sec = window_sec.run()
             if not res_sec.clicked:
                 return
 
