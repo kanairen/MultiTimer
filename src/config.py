@@ -12,7 +12,6 @@ PATH_RES_IMG = os.path.join(PATH_RES, 'img')
 PATH_RES_IMG_PAUSE = os.path.join(PATH_RES_IMG, 'pause.png')
 PATH_RES_IMG_PLAY = os.path.join(PATH_RES_IMG, 'play.png')
 PATH_RES_IMG_STOP = os.path.join(PATH_RES_IMG, 'stop.png')
-PATH_RES_IMG_TIME = os.path.join(PATH_RES_IMG, 'time.png')
 PATH_RES_IMG_MY_TIME = os.path.join(PATH_RES_IMG, 'my_time.png')
 PATH_RES_IMG_MY_TIME_ALPHA = os.path.join(PATH_RES_IMG, 'my_time_alpha.png')
 
