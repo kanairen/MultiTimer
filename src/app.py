@@ -117,4 +117,6 @@ class MultiTimerApp(rumps.App):
     def sec_to_hms(sec):
         h, mod = divmod(sec, 3600)
         m, s = divmod(mod, 60)
-        return "{0:02d}:{1:02d}:{2:02d}".format(h, m, s)
+        form = "{0:02d}:{1:02d}:{2:02d}".format(h, m, s) \
+            if h > 0 else "{0:02d}:{1:02d}".format(m, s)
+        return form
